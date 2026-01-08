@@ -1,8 +1,8 @@
-# Your startup name here
+# Accountable
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This website will help keep users accountable for the goals and resolutions they set at the beginning of the year by pairing with another user and completing actions such as weekly or daily check ins, submitting photos and weekly progress updates. The users may also decide rewards or punishments to add an extra layer of motivation. daily habits can also be tracked with this app through charts and graphs. 
 
 > [!NOTE]
 > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
@@ -25,7 +25,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+did you know [according to a study done in 2024](https://insideoutmastery.com/new-years-resolution-statistics/) around 80% of people abandon their goals before febuary ends?! There are many factors that contribute to this including vague goals, relying only on willpower, no real consequences or previous strongly established habits. With this app, you will be able to effectively solve all these problems and keep your new years words by pairing up with a person of choice and keep each other accountable. accountablity is one of the best ways to keep our goals as it adds an external pressure to improve, and while it is a sort of bandaid for becoming better, it provides a clean transition from extrinsic to intrinisic motivation through our daily habits. 
+
+"success is a product of our daily habits - not once in a lifetime transition" - james clear
 
 ### Design
 
