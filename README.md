@@ -17,23 +17,48 @@ This website will help keep users accountable for the goals and resolutions they
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-did you know [according to a study done in 2024](https://insideoutmastery.com/new-years-resolution-statistics/) around 80% of people abandon their goals before febuary ends?! There are many factors that contribute to this including vague goals, relying only on willpower, no real consequences or previous strongly established habits. With this app, you will be able to effectively solve all these problems and keep your new years words by pairing up with a person of choice and keep each other accountable. accountablity is one of the best ways to keep our goals as it adds an external pressure to improve, and while it is a sort of bandaid for becoming better, it provides a clean transition from extrinsic to intrinisic motivation through our daily habits. 
+Did you know that, according to a [2024 study](https://insideoutmastery.com/new-years-resolution-statistics/), nearly 80% of people abandon their New Year’s resolutions before February ends? This failure isn’t usually due to lack of desire but caused by vague goals, reliance on willpower alone, and the absence of real accountability or consequences. This app addresses those problems by pairing two people together to keep each other accountable for their goals. By sharing daily check-ins, progress, and responsibility, users introduce healthy external pressure that dramatically increases follow-through. And while accountability may begin as an extrinsic motivator, the app is designed to help users build consistent daily habits that naturally transition into intrinsic motivation over time.
 
-"success is a product of our daily habits - not once in a lifetime transition" - james clear
+Instead of relying on motivation that fades, this platform turns resolutions into routines.
+
+"success is a product of our daily habits - not once in a lifetime transition" - James Clear author of Atomic Habits
+
+### Key Features
+- website integrating paring
+    - users can privately pair with each other with an add code
+
+- goal tracking
+    - users define own goals
+    - users define daily habits that will done to accomplish goals
+        - generic daily habits (wake up time, distance for running, etc.) will be provided to streamline habit selection
+    - both users can see goals and daily habits to do
+
+- shared progress dashboard
+    - side-by-side view of both users' goals and check-in status
+    - progress of their daily habits are immediately visible to each other
+
+- real-time updates
+    - instantly update partner's and your dashboard
+
+- accountability pokes 
+    - users can send gentle reminders to their partners 
+
+- Future developments
+    - instead of using only add codes, match users dependent on things like goal compatibility, location, etc.
+
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](Rough_Drawing.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ```mermaid
 sequenceDiagram
@@ -42,22 +67,16 @@ sequenceDiagram
     You->>Website: Replace this with your design
 ```
 
-### Key features
-
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
-
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Build the core structure of the page (both the persons main page and a specific posts page) 
+- **CSS** - style everything to create a better UI similar to a SM post. card layouts, photos, text, and spacing
+- **React** - convert HTML/CSS into components and manage UI state and routing (routing )
+- **Service** - Build backend and API endpoints react app calls (create/join par, creat/get weekly posts, upload/get img)
+- **DB/Login** - store application data in database, pair codes, weekly posts, checkbox check ins
+- **WebSocket** - When a cehckbox is clicked, update immedietly, posting weekly reflections also updates in real time
 
 ## 🚀 AWS deliverable
 
