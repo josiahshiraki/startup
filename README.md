@@ -94,8 +94,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - all pages are accessible and backward traceable through links
 - [x] **Text** - placeholder for resolution and habit tracker
 - [x] **3rd party API placeholder** - placeholder for inspirational quote in my resolution and goals
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
+- [x] **Images** - added image in homepage for motivation
+- [x] **Login placeholder** - first page is the index page /login
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
 
