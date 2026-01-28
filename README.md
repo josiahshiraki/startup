@@ -88,11 +88,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
+- [x] **completed prereqs** simon deployed, github link, git commmits
 - [x] **HTML pages** - home page (your main habit tracker), index(login page), friends habit tracker (websocket data), my resolution and goals (page and goal record)
 - [x] **Proper HTML element usage** - used div and h1 for most lines
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **Links** - all pages are accessible and backward traceable through links
+- [x] **Text** - placeholder for resolution and habit tracker
+- [x] **3rd party API placeholder** - placeholder for inspirational quote in my resolution and goals
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
