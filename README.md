@@ -96,8 +96,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **3rd party API placeholder** - placeholder for inspirational quote in my resolution and goals
 - [x] **Images** - added image in homepage for motivation
 - [x] **Login placeholder** - first page is the index page /login
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **DB data placeholder** - input box and submit for login, home page is the place holder for the database which is your main habit tracker
+- [x] **WebSocket placeholder** - your friends habit tracker will be displayed, can comment on there weekly habit tracker
 
 ## 🚀 CSS deliverable
 
