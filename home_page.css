@@ -91,7 +91,8 @@ nav a {
 }
 
 nav a:hover{
-    text-decoration: overline;
+    text-decoration: underline;
+    color:rgb(0, 0, 0)
 }
 
 table {
