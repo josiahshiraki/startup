@@ -52,6 +52,13 @@ header h1{
     color: rgb(173, 5, 5)
 }
 
+header h2{
+    margin: 0;
+    font: sans-serif;
+    font-size: 2rem;
+    color: rgb(255, 255, 255)
+}
+
 header p{
   margin: 0.5rem;
   color: #555;

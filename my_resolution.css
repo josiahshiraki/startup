@@ -73,6 +73,10 @@ nav menu li {
     padding: 0.25rem 0;
 }
 
+.header-image {
+  border-radius: 6px;
+}
+
 nav a {
     text-decoration: none;
     color: rgb(173, 5, 5);

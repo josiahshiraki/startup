@@ -1,100 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="friend_habit_tracker.css" />
-
 
 <head>
-    <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accountable HTML</title>
-    <link rel="icon" href="favicon.ico" />
+  <meta charset="UTF-8" />
+  <!-- Tell browsers not to scale the viewport automatically -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friend Habit Tracker</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="friend_habit_tracker.css" />
 </head>
 
 <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
-    <header>
-        <div>
-            <h1>Accountable<sup></sup></h1>
-            username
-        </div>
 
+  <header>
+    <div class="header-bar">
+      <div class="brand">
+        <h1>Accountable</h1>
+        <div class="username">username</div>
+      </div>
 
-        <!-- Navigation elements -->
-        <nav>
-            <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-            <menu>
-                <li><a href="index.html">back to login</a></li>
-                <li><a href="home_page.html">home</a></li>
-                <li><a href="my_resolution.html">my resolution and goals</a></li>
-                <li><a href="friend_habit_tracker.html">Friend habit Tracker</a></li>
-            </menu>
+      <nav>
+        <menu>
+          <li><a href="index.html">Back to Login</a></li>
+          <li><a href="home_page.html">Home</a></li>
+          <li><a href="my_resolution.html">My Resolution and Goals</a></li>
+          <li><a href="edit_habit_tracker.html">Edit Habit Tracker</a></li>
+          <li><a href="past_weeks.html">Record of Past Weeks</a></li>
+          <li><a href="friend_habit_tracker.html">Friend Habit Tracker</a></li>
+        </menu>
+      </nav>
 
-            <h1>
-                Friend habit tracker
-            </h1>
+      <img src="sisyphus.jpg" alt="motivational picture" class="header-image" width="100" />
+    </div>
 
-       <h2>Friends Username's Weekly Habit Tracker</h2>
+    <hr />
+  </header>
+
+  <main>
+
     <section>
-        <table border="2">
-            <thead>
-                <tr>
-                    <th>Habit</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    <th>Sun</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>habit 1</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>habit 2</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>habit 3</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>habit 4</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>habit 5</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-            </tbody>
-        </table>
+      <h2>Friend’s Weekly Habit Tracker</h2>
+
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Habit</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Habit 1</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Habit 2</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Habit 3</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Habit 4</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Habit 5</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-            <section>
+    <section>
+      <h2>Send Encouragement</h2>
 
-                <form>
-                    <label>
-                        
-                        <br />
-                        <textarea rows="5" cols="50" placeholder="Words of encouragment?"></textarea>
-                    </label>
-                    <br /><br />
-                    <button type="submit">Comment</button>
-                </form>
-            </section>
-        </nav>
+      <form>
+        <label>
+          <textarea rows="5" cols="50" placeholder="YOU GOT THIS!"></textarea>
+        </label>
 
-        <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-        <hr />
-    </header>
+        <br /><br />
 
-    <main>
-    </main>
+        <button type="submit">Comment</button>
+      </form>
+    </section>
 
-    <footer>
+  </main>
 
+  <footer>
+    <p>Accountable</p>
+  </footer>
+
+</body>
 </html>

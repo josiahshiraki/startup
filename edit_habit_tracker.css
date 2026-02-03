@@ -18,6 +18,10 @@ header{
     gap: 1.5rem;
 }
 
+.header-image {
+  border-radius: 6px;
+}
+
 .brand h1 {
     margin: 0;
 }
