@@ -7,56 +7,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accountable HTML</title>
   <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="home_page.css" />
 </head>
 
 <body>
-  <!-- Use header, main, and footer elements to give semantic structure -->
-  <header>
-    <div>
 
-      <h1>Accountable<sup></sup></h1>
-      username
+  <header>
+    <div class="header-bar">
+      <div class="brand">
+        <h1>Accountable</h1>
+        <div class="username">username</div>
+      </div>
+
+      <nav>
+        <menu>
+          <li><a href="index.html">Back to Login</a></li>
+          <li><a href="home_page.html">Home</a></li>
+          <li><a href="my_resolution.html">My Resolution and Goals</a></li>
+          <li><a href="edit_habit_tracker.html">Edit Habit Tracker</a></li>
+          <li><a href="past_weeks.html">Record of Past Weeks</a></li>
+          <li><a href="friend_habit_tracker.html">Friend Habit Tracker</a></li>
+        </menu>
+      </nav>
+
+      <img src="sisyphus.jpg" alt="motivational picture" class="header-image" width="100" />
     </div>
 
+    <hr />
+  </header>
 
-    <!-- Navigation elements -->
-    <nav>
-      <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-      <menu>
-        <li><a href="index.html">back to login</a></li>
-        <li><a href="home_page.html">home</a></li>
-        <li><a href="my_resolution.html">my resolution and goals</a></li>
-        <li><a href="friend_habit_tracker.html">Friend habit Tracker</a></li>
-      </menu>
+  <main>
 
-      <div>
-        </br>
-        </br>
-        placeholder for inspirational quote api
+    <section>
+      <h2>Daily Inspiration</h2>
+      <p>A habit missed once is a mistake, a habit missed twice is a start of a new habit" - James Clear</p>
+    </section>
 
-      </div>
-      <div>
-        <h1>
-          My Resolution placeholder
-        </h1>
-      </div>
-
+    <section>
+          
+      <h2>My Resolutions</h2>
       <ul>
         <li>Goal 1</li>
         <li>Goal 2</li>
         <li>Goal 3</li>
       </ul>
 
-    </nav>
+      <button type="button"> Create New Goal </button>
 
-    <hr />
-  </header>
+    </section>
 
-  <main>
   </main>
 
   <footer>
     <p>Accountable</p>
   </footer>
+
+</body>
 
 </html>
