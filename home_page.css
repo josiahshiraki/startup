@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 body{
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     background-color: rgb(29, 6, 86); 
     color:rgb(0, 0, 0)
 }
 
 header{
     background-color: white;
-    padding: 2.0rem;
+    padding: 2.0rem; /*rem means root rem, relative to browser specifications*/
     border-bottom: 1px solid white;
 }
 
