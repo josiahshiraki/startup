@@ -36,10 +36,21 @@ header p{
   color: #555;
 }
 
+
 nav menu {
     display: flex;
-    gap: 1 rem;
+    gap: 1rem;
     padding: 2;
     margin: 5;
     list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(27, 244, 172);
+    font-weight: bold;
+}
+
+nav a:hover{
+    text-decoration: overline;
 }
