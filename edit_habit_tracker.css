@@ -22,19 +22,41 @@ header{
   border-radius: 6px;
 }
 
-.brand h1 {
-    margin: 0;
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;   /* controls spacing between title and username */
 }
 
 .username {
-    font-size: 0.9rem;
-    color: #555;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+header h1{
+    margin: 0;
+    font: sans-serif;
+    font-size: 2rem;
+    color: rgb(0, 0, 0)
+}
+
+.header-image {     
+    height: auto;
+    border-radius: 6px;
 }
 
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 0.000001rem;
+}
+
+footer {
+    text-align:center;
+    padding: 1rem;
+    color: #8d8d8d;
+    font-size: 0.9rem;
 }
 
 section {
@@ -112,12 +134,4 @@ nav a {
 nav a:hover{
     text-decoration: underline;
     color:rgb(0, 0, 0)
-}
-
-
-footer {
-    text-align:center;
-    padding: 8rem;
-    color: #fff2f2;
-    font-size: 0.9rem;
 }
