@@ -6,20 +6,20 @@ body{
     color:rgb(0, 0, 0)
 }
 
-header{
+header{ /**element selector**/
     background-color: white;
     padding: 2.0rem; /*rem means root rem, relative to browser specifications*/
     border-bottom: 1px solid white;
 }
 
-.header-bar {
+.header-bar { /**class selector**/
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
 }
 
-.brand {
+.brand { 
   display: flex;
   flex-direction: column;
   gap: 0.25rem;   /* controls spacing between title and username */
@@ -31,7 +31,7 @@ header{
   color: #555;
 }
 
-header h1{
+header h1{ 
     margin: 0;
     font: sans-serif;
     font-size: 2rem;
@@ -94,7 +94,7 @@ nav a {
     border-radius: 4px;
 }
 
-nav a:hover{
+nav a:hover{ /**psuedo selector**/
     text-decoration: underline;
     color:rgb(0, 0, 0)
 }

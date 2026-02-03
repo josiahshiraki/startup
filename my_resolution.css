@@ -38,7 +38,7 @@ header h1{
     color: rgb(0, 0, 0)
 }
 
-.header-image {     
+.header-image {      /**class selector**/
     height: auto;
     border-radius: 6px;
 }
@@ -56,7 +56,7 @@ footer {
     font-size: 0.9rem;
 }
 
-section{
+section{ /**element selector**/
     background-color: rgb(255, 255, 255);
     padding: 2.5rem;
     margin-bottom: 1rem;
@@ -88,7 +88,7 @@ nav a {
     border-radius: 4px;
 }
 
-nav a:hover{
+nav a:hover{ /**psuedo selector**/
     text-decoration: underline;
     color:rgb(0, 0, 0)
 }
