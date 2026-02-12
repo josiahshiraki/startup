@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('https://cs260.click/fonts/quicksand.ttf');
+}body{
+    margin: 0;
+    font-family: Quicksand;
+    background-color: rgb(29, 6, 86); 
+    color:rgb(0, 0, 0)
+}
+
+header{
+    background-color: white;
+    padding: 2.0rem;
+    border-bottom: 1px solid white;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;   /* controls spacing between title and username */
+}
+
+.username {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+header h1{
+    margin: 0;
+    font: sans-serif;
+    font-size: 2rem;
+    color: rgb(0, 0, 0)
+}
+
+.header-image {      /**class selector**/
+    height: auto;
+    border-radius: 6px;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 0.000001rem;
+}
+
+footer {
+    text-align:center;
+    padding: 1rem;
+    color: #8d8d8d;
+    font-size: 0.9rem;
+}
+
+section{ /**element selector**/
+    background-color: rgb(255, 255, 255);
+    padding: 2.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0.05);
+}
+
+section h2 {
+  margin-top: 0;
+}
+
+nav menu {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav menu li {
+    padding: 0.25rem 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(173, 5, 5);
+    font-weight: bold;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+}
+
+nav a:hover{ /**psuedo selector**/
+    text-decoration: underline;
+    color:rgb(0, 0, 0)
+}
+
+section li {
+    margin: 0.6rem 0;
+    line-height: 1.4;
+}
+
+section button {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-weight:bold;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(189, 143, 143);
+    color: white;
+    cursor: pointer;
+}
+
+
+section button:hover {
+  background-color: rgb(189, 81, 81);
+}
