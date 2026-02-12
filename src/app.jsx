@@ -2,37 +2,62 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Edit_habit_tracker } from './edit_habit_tracker/edit_habit_tracker';
+import { Login } from './login/login';
+import { My_resolution } from './my_resolution/my_resolution';
+import { Past_weeks } from './past_weeks/past_weeks';
+import { Friend_habit_tracker } from './friend_habit_tracker/friend_habit_tracker'
+import { Home_page } from './home_page/home_page'
+
+
 export default function App() {
-  return <div className="body bg-dark text-light">
-    <header>
-        <div className = "header-bar">
-            <div className = "brand">   
-                <h1>Accountable<sup></sup></h1>
-                <div className = "username">username</div>
-            </div>
+  return ( 
+    <BrowserRouter>
+        <div className="body bg-dark text-light">
+            <header>
+                <div className = "header-bar">
+                    <div className = "brand">   
+                        <h1>Accountable<sup></sup></h1>
+                        <div className = "username">username</div>
+                    </div>
 
-            <nav>
-                <menu>
-                    <li><a href="index.html">Back To Login</a></li>
-                    <li><a href="home_page.html">Home</a></li>
-                    <li><a href="my_resolution.html">My Resolution and Goals</a></li>
-                    <li><a href="edit_habit_tracker.html">Edit Habit Tracker</a></li>
-                    <li><a href="past_weeks.html">Record of Past Weeks</a></li>
-                    <li><a href="friend_habit_tracker.html">Friend Habit Tracker</a></li> 
-                </menu>
-            </nav>
-            <img src = "sisyphus.jpg" alt = "motivational picture" class = "header-image" width={100}/>
+                    <nav>
+                        <menu>
+                            <li><NavLink to="/login">Back To Login</NavLink></li>
+                            <li><NavLink to="/home_page">Home</NavLink></li>
+                            <li><NavLink to="/my_resolution">My Resolution and Goals</NavLink></li>
+                            <li><NavLink to="/edit_habit_tracker">Edit Habit Tracker</NavLink></li>
+                            <li><NavLink to="/past_weeks">Record of Past Weeks</NavLink></li>
+                            <li><NavLink to="/friend_habit_tracker">Friend Habit Tracker</NavLink></li> 
+                        </menu>
+                    </nav>
+                    <img src = "sisyphus.jpg" alt = "motivational picture" className = "header-image" width={100}/>
+                </div>
+                <hr />
+            </header>
+
+            <Routes>
+            <Route path='/' element={<Login />} exact />
+            <Route path='/login' element={<Login />} />
+            <Route path='/my_resolution' element={<My_resolution />} />
+            <Route path='/home_page' element={<Home_page />} />
+            <Route path='/edit_habit_tracker' element={<Edit_habit_tracker />} />
+            <Route path='/friend_habit_tracker' element={<Friend_habit_tracker />} />
+            <Route path='/past_weeks' element={<Past_weeks />} />
+
+            <Route path='*' element={<NotFound />} />
+            </Routes>
+
+            <footer>
+                <p>Josiah Shiraki</p>
+                <a href="https://github.com/josiahshiraki/startup.git">GitHub</a>
+            </footer>
         </div>
-        <hr />
-    </header>
+    </BrowserRouter>
+  );
+}
 
-    <main className='container-fluid bg-secondary text-center'>
-        app components go here
-    </main>
-
-    <footer>
-        <p>Josiah Shiraki</p>
-        <a href="https://github.com/josiahshiraki/startup.git">GitHub</a>
-    </footer>
-  </div>;
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }

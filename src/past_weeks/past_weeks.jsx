@@ -3,7 +3,7 @@ import React from 'react';
 export function Past_weeks() {
   return (
     <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
+      <div>past weeks displayed here</div>
     </main>
   );
 }

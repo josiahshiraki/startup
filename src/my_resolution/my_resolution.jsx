@@ -3,7 +3,7 @@ import React from 'react';
 export function My_resolution() {
   return (
     <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
+      <div>My resolution displayed here</div>
     </main>
   );
 }
