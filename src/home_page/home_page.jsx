@@ -3,11 +3,11 @@ import './home_page.css';
 
 export function Home_page() {
   return (
-        <main>
+        <main className="homepage_main">
             <section>
                 <h2>Weekly Habit Tracker</h2>
 
-                <table border="2">
+                <table className="my-habit-tracker" border="2">
                     <thead>
                         <tr>
                             <th>Habit</th>

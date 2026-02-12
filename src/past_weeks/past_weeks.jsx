@@ -13,7 +13,7 @@ export function Past_weeks() {
     <section>
       <h3>Weekly Completion Rates</h3>
 
-      <table border="">
+      <table className="past-week-table" border="">
         <thead>
           <tr>
             <th>Week</th>

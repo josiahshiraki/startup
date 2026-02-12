@@ -1,5 +1,5 @@
 import React from 'react';
-import './edit_habit_tracker'
+import './edit_habit_tracker.css'
 
 export function Edit_habit_tracker() {
   return (
@@ -17,7 +17,7 @@ export function Edit_habit_tracker() {
 
         <section>
             <h2>current habits</h2>
-            <ul>
+            <ul className="ul-edit-ht">
                 <li>Habit 1 <button type="button">Remove</button></li>
                 <li>Habit 2 <button type="button">Remove</button></li>
                 <li>Habit 3 <button type="button">Remove</button></li>

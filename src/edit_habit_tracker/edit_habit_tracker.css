@@ -5,10 +5,10 @@
 .body{
     margin: 0;
     font-family: Quicksand;
-    background-color: rgb(29, 6, 86); 
+    background-color:blue;
     color:rgb(0, 0, 0)
 }
-
+ 
 header{
     background-color: white;
     padding: 2.0rem;
@@ -73,13 +73,13 @@ section {
 
 
 section button {
-    
     margin-top: 0.5rem;
-    padding: 0.2rem;
+    margin-left: 0.5rem;
+    padding: 0.6rem 1rem;
     font-weight:bold;
     border: none;
     border-radius: 6px;
-    background-color: rgb(189, 143, 143);
+    background-color: rgb(148, 37, 37);
     color: white;
     cursor: pointer;
 }
@@ -101,19 +101,16 @@ nav menu {
     list-style: none;
 }
 
-section ul {
+.ul-edit-ht {
     padding-left: 1.2rem;
 }
 
-section li {
+.ul-edit-ht li {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-section li:hover {
-    text-decoration: line-through;
-}
 
 
 input {

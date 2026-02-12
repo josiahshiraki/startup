@@ -1,10 +1,18 @@
-.body {
+@font-face {
+  font-family: 'Quicksand';
+  src: url('https://cs260.click/fonts/quicksand.ttf');
+}
+
+body {
+  font-family: Quicksand;
   display: flex;
   flex-direction: column;
+  background-color: rgb(35, 35, 102);
   min-width: 375px;
 }
 
 header {
+  background-color: rgb(35, 35, 102);
   flex: 0 80px;
 }
 

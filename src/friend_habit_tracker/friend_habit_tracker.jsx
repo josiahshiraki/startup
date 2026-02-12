@@ -4,11 +4,10 @@ import './friend_habit_tracker.css';
 export function Friend_habit_tracker() {
   return (
   <main>
-
     <section>
       <h2>Friend’s Weekly Habit Tracker</h2>
 
-      <table border="2">
+      <table className="friend-habit-tracker" border="2">
         <thead>
           <tr>
             <th>Habit</th>
@@ -60,7 +59,7 @@ export function Friend_habit_tracker() {
         <button type="submit">Comment</button>
       </form>
     </section>
-
   </main>
   );
+
 }

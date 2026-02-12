@@ -15,7 +15,7 @@ export default function App() {
   return ( 
     <BrowserRouter>
         <div>
-            <header>
+            <header className>
                 <div className = "header-bar">
                     <div className = "brand">   
                         <h1>Accountable<sup></sup></h1>

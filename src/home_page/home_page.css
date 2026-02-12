@@ -2,19 +2,14 @@
   font-family: 'Quicksand';
   src: url('https://cs260.click/fonts/quicksand.ttf');
 }
-.body{
-    margin: 0;
-    font-family: Quicksand;
-    color:rgb(0, 0, 0)
-}
 
-header{ /**element selector**/
+header{
     background-color: white;
-    padding: 2.0rem; /*rem means root rem, relative to browser specifications*/
+    padding: 2.0rem;
     border-bottom: 1px solid white;
 }
 
-.header-bar { /**class selector**/
+.header-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,17 +40,34 @@ header h1{
     border-radius: 6px;
 }
 
+nav menu {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav menu li {
+    padding: 0.25rem 0;
+}
+
+nav a {  text-decoration: none;
+    color: rgb(173, 5, 5);
+    font-weight: bold;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+}
+
+nav a:hover{ /**psuedo selector**/
+    text-decoration: underline;
+    color:rgb(0, 0, 0)
+}
+
 main {
   width: min(1400px, 95vw);
   margin: 2rem auto;
   padding: 0;
-}
-
-footer {
-    text-align:center;
-    padding: 1rem;
-    color: #8d8d8d;
-    font-size: 0.9rem;
 }
 
 section{
@@ -77,32 +89,7 @@ header p{
   color: #555;
 }
 
-nav menu {
-    display: flex;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-nav menu li {
-    padding: 0.25rem 0;
-}
-
-nav a {
-    text-decoration: none;
-    color: rgb(173, 5, 5);
-    font-weight: bold;
-    padding: 0.4rem 0.6rem;
-    border-radius: 4px;
-}
-
-nav a:hover{ /**psuedo selector**/
-    text-decoration: underline;
-    color:rgb(0, 0, 0)
-}
-
-table {
+.my-habit-tracker{
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
