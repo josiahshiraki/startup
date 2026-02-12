@@ -8,20 +8,20 @@
     color:rgb(0, 0, 0)
 }
 
-header{
+header{ /**element selector**/
     background-color: white;
-    padding: 2.0rem;
+    padding: 2.0rem; /*rem means root rem, relative to browser specifications*/
     border-bottom: 1px solid white;
 }
 
-.header-bar {
-    display: flex; /*resizes to meet the specs of browser*/
+.header-bar { /**class selector**/
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
 }
 
-.brand {
+.brand { 
   display: flex;
   flex-direction: column;
   gap: 0.25rem;   /* controls spacing between title and username */
@@ -33,6 +33,13 @@ header{
   color: #555;
 }
 
+header h1{ 
+    margin: 0;
+    font: sans-serif;
+    font-size: 2rem;
+    color: rgb(0, 0, 0)
+}
+
 .header-image {     
     height: auto;
     border-radius: 6px;
@@ -41,7 +48,7 @@ header{
 main {
     max-width: 900px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 0.000001rem;
 }
 
 footer {
@@ -51,26 +58,23 @@ footer {
     font-size: 0.9rem;
 }
 
-header h1{
-    margin: 0;
-    font-size: 2rem;
-    color: rgb(0, 0, 0)
+section{
+    background-color: rgb(255, 255, 255);
+    padding: 2.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0.05);
+}
+
+section h2 {
+    margin-top: 0;
+    color: rgb(173, 5, 5);
 }
 
 header p{
   margin: 0.5rem;
   color: #555;
 }
-
-section{
-    background-color: white;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-
 
 nav menu {
     display: flex;
@@ -92,7 +96,7 @@ nav a {
     border-radius: 4px;
 }
 
-nav a:hover{
+nav a:hover{ /**psuedo selector**/
     text-decoration: underline;
     color:rgb(0, 0, 0)
 }

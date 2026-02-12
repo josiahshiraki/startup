@@ -14,7 +14,7 @@ import { Home_page } from './home_page/home_page'
 export default function App() {
   return ( 
     <BrowserRouter>
-        <div className="body bg-dark text-light">
+        <div>
             <header>
                 <div className = "header-bar">
                     <div className = "brand">   
