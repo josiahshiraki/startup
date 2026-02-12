@@ -31,7 +31,8 @@ export default function App() {
     </main>
 
     <footer>
-        <p>Accountable</p>
+        <p>Josiah Shiraki</p>
+        <a href="https://github.com/josiahshiraki/startup.git">GitHub</a>
     </footer>
   </div>;
 }
