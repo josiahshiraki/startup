@@ -1,7 +1,8 @@
 @font-face {
   font-family: 'Quicksand';
   src: url('https://cs260.click/fonts/quicksand.ttf');
-}body{
+}
+.body{
     margin: 0;
     font-family: Quicksand;
     color:rgb(0, 0, 0)

@@ -36,9 +36,6 @@ menu .nav-item {
   padding: 0 0.3em;
 }
 
-footer a {
-  float: right;
-}
 
 @media (max-height: 600px) {
   header {
