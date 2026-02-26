@@ -44,10 +44,14 @@ export function Home_page({user}) {
         }
     })
     
+    const [friendUsername, setFriendUsername] = React.useState('Loading...');
+    const [partnerComment, setPartnerComment] = React.useState('');
 
     React.useEffect(() => {
         localStorage.setItem(STORAGE_REF, JSON.stringify(habits));
-    }, [habits]);
+        setFriendUsername('Friend');
+        setPartnerComment('For with God, nothing shall be impossible');
+    }, []);
 
     function toggleDay(habitId,dayIndex){
         setHabits(prevHabits =>
@@ -100,11 +104,11 @@ export function Home_page({user}) {
 
 
             <section>
-                <h2><strong>friend's username</strong></h2>
+                {/**preperation for web socket plug in*/}
+                <h2><strong>{friendUsername}</strong></h2>
                 <article>
-                    Partner comment will appear here.       
+                    {partnerComment || "If you make friends with yourself, you will never be alone."}
                 </article>
-
             </section>
         </main>
   );

@@ -43,7 +43,6 @@ export function Friend_habit_tracker() {
 
     setFeed(prev => [{ text, at: Date.now(), from: 'You' }, ...prev]);
     setMessage('');
-
   }
 
   return (
