@@ -1,51 +1,55 @@
 import React from 'react';
 import './home_page.css';
 
+const STORAGE_REF = 'accountable.habits'
 
-    /**
-         * creates a row iteration for one habit
-         * first box is a name, the following cols in
-         * the row are displayed through a loop (map) which
-         * goes through each boolean var in the array and checks 
-         * if it is true or false
-         * toggleday is a function that will react when checkbox clicked,
-         * update the storage data, and invert the respective boolean var
-    */
+//habit objects for table habit tracker
+const habits = [
+    {id: 'habit-1', name: 'habit 1', checks: Array(7).fill(false)},
+    {id: 'habit-2', name: 'habit 2', checks: Array(7).fill(false)},
+    {id: 'habit-3', name: 'habit 3', checks: Array(7).fill(false)},
+    {id: 'habit-4', name: 'habit 4', checks: Array(7).fill(false)},
+    {id: 'habit-5', name: 'habit 5', checks: Array(7).fill(false)},
+];
 
-
-
-    const STORAGE_REF = 'home_page.habits'
-
-    //habit objects for table habit tracker
-    const selfHabits = [
-        {id: 'habit-1', name: 'habit 1', checks: Array(7).fill(false)},
-        {id: 'habit-2', name: 'habit 2', checks: Array(7).fill(false)},
-        {id: 'habit-3', name: 'habit 3', checks: Array(7).fill(false)},
-        {id: 'habit-4', name: 'habit 4', checks: Array(7).fill(false)},
-        {id: 'habit-5', name: 'habit 5', checks: Array(7).fill(false)},
-    ];
-
-    function HabitRow({habit, onToggleDay}){
-        return(
-            <tr>
-                <td>{habit.name}</td> 
-                {habit.checks.map((isChecked,dayIndex) => (
-                    <td key={dayIndex}>
-                        <input 
-                            type="checkbox" 
-                            checked={isChecked} 
-                            onChange={() => onToggleDay(habit.id, dayIndex)}
-                        />
-                    </td>
-                ))}
-            </tr>
-        );
-    }
+/**
+     * creates a row iteration for one habit
+     * first box is a name, the following cols in
+     * the row are displayed through a loop (map) which
+     * goes through each boolean var in the array and checks 
+     * if it is true or false
+     * toggleday is a function that will react when checkbox clicked,
+     * update the storage data, and invert the respective boolean var
+*/
+function HabitRow({habit, onToggleDay}){
+    return(
+        <tr>
+            <td>{habit.name}</td> 
+            {habit.checks.map((isChecked,dayIndex) => (
+                <td key={dayIndex}>
+                    <input 
+                        type="checkbox" 
+                        checked={isChecked} 
+                        onChange={() => onToggleDay(habit.id, dayIndex)}
+                    />
+                </td>
+            ))}
+        </tr>
+    );
+}
 
 export function Home_page({user}) {
 
     //stores the global array of habit objs into local storage
-    const [habits, setHabits] = React.useState(selfHabits)
+    const [habits, setHabits] = React.useState(() => {
+        const saved = localStorage.getItem(STORAGE_REF);
+        if(saved){
+            return JSON.parse(saved);
+        }else{
+            return habits;
+        }
+    })
+    
 
     React.useEffect(() => {
         localStorage.setItem(STORAGE_REF, JSON.stringify(habits));
