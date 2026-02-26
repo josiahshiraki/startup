@@ -83,56 +83,16 @@ export function Home_page({user}) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>habit 1</td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                        </tr>
-                        <tr>
-                            <td>habit 2</td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                        </tr>
-                        <tr>
-                            <td>habit 3</td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                        </tr>
-                        <tr>
-                            <td>habit 4</td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                        </tr>
-                        <tr>
-                            <td>habit 5</td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                            <td><input type="checkbox"></input></td>
-                        </tr>
+                        {/*implement the habitrow func*/}
+                        {
+                            habits.map(habit =>
+                                (<HabitRow
+                                    key={habit.id} //list key
+                                    habit={habit} //pass in specific habit obj
+                                    onToggleDay={toggleDay} //function to change the 
+                                />)
+                            )
+                        }
                     </tbody>
                 </table>
             </section>
