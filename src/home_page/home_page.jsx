@@ -1,7 +1,11 @@
 import React from 'react';
 import './home_page.css';
 
-export function Home_page() {
+export function Home_page({user}) {
+
+    
+
+
   return (
         <main className="homepage_main">
             <section>
@@ -23,23 +27,53 @@ export function Home_page() {
                     <tbody>
                         <tr>
                             <td>habit 1</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
                         </tr>
                         <tr>
                             <td>habit 2</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
                         </tr>
                         <tr>
                             <td>habit 3</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
                         </tr>
                         <tr>
                             <td>habit 4</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
                         </tr>
                         <tr>
                             <td>habit 5</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
+                            <td><input type="checkbox"></input></td>
                         </tr>
                     </tbody>
                 </table>
