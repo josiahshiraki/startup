@@ -1,8 +1,23 @@
 import React from 'react';
 import './my_resolution.css';
 
+const STORAGE_REF = 'accountable.resolutions'
+
+function createResolution(resolution){
+  return {id:Date.now().toString(), resolution, createdAt: Date.now()};
+}
 
 export function My_resolution() {
+
+  const [newGoal, setNewGoal] = React.useState('') //for input box
+
+  const [goals, setGoals] = React.useState(() => {
+      const saved = localStorage.getItem(STORAGE_REF);
+      if(saved){
+        return JSON.parse(saved)
+      }
+  })
+
   return (
  <main>
     <section>
