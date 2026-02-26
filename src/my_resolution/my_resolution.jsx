@@ -1,6 +1,7 @@
 import React from 'react';
 import './my_resolution.css';
 
+
 export function My_resolution() {
   return (
  <main>
@@ -16,8 +17,15 @@ export function My_resolution() {
         <li>Goal 2</li>
         <li>Goal 3</li>
       </ul>
+      <form>
+        <label>Goal: </label>
+        <input
+          type="text"
+          placeHolder="ex: lose 15lbs"
+        />
+        <button type="button">Create New Goal</button>
 
-      <button type="button">Create New Goal</button>
+      </form>
     </section>
   </main>
   );
