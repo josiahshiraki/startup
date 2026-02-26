@@ -4,13 +4,7 @@ import './home_page.css';
 const STORAGE_REF = 'accountable.habits'
 
 //habit objects for table habit tracker
-const habits = [
-    {id: 'habit-1', name: 'habit 1', checks: Array(7).fill(false)},
-    {id: 'habit-2', name: 'habit 2', checks: Array(7).fill(false)},
-    {id: 'habit-3', name: 'habit 3', checks: Array(7).fill(false)},
-    {id: 'habit-4', name: 'habit 4', checks: Array(7).fill(false)},
-    {id: 'habit-5', name: 'habit 5', checks: Array(7).fill(false)},
-];
+const defaultHabits = [];
 
 /**
      * creates a row iteration for one habit
@@ -46,7 +40,7 @@ export function Home_page({user}) {
         if(saved){
             return JSON.parse(saved);
         }else{
-            return habits;
+            return defaultHabits;
         }
     })
     
@@ -72,6 +66,9 @@ export function Home_page({user}) {
         <main className="homepage_main">
             <section>
                 <h2>Weekly Habit Tracker</h2>
+                <div>
+                    {habits.length == 0 && <div>add habits in "edit habit tracker" page</div>}
+                </div>
 
                 <table className="my-habit-tracker" border="2">
                     <thead>

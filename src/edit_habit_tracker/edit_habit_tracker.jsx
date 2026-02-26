@@ -5,10 +5,8 @@ const STORAGE_REF = 'accountable.habits'
 
 //function to create new OBJ habit
 function createHabit(name){
-    return {id: date.now().toString(), name, checks: Array(7).fill(false)} //id name must be unique, use timestamp
+    return {id: Date.now().toString(), name, checks: Array(7).fill(false)} //id name must be unique, use timestamp
 }
-
-
 
 export function Edit_habit_tracker() {
 
@@ -16,23 +14,28 @@ export function Edit_habit_tracker() {
     const [newHabitName, setNewHabitName] = React.useState('');
 
     //returns the array of habit objs to be referenced in this page 
-    //may need for safety return saved ? JSON.parse(saved) : [];
-    const [habits, setHabits] = React.useState(() => {
+    const [habits, setHabits] = React.useState(() => { 
         const saved = localStorage.getItem(STORAGE_REF);
         if(saved){
             return JSON.parse(saved);
-        }else{
-            return [];
         }
     })
 
     function addHabit(e){
         e.preventDefault(); //no reload
-        const name = newHabitName.trim();
+        const name = newHabitName.trim(); //no whitespace
         if (!name) return; // if there's no input, don't do anything
         setHabits(prevHabits => [...prevHabits, createHabit(name)]); //appends new habit to array
         setNewHabitName('') //clears input box
+    }
 
+    //on remove button click
+    function removeHabit(index){ 
+        setHabits(prevHabits => {
+            const retArray = [...prevHabits];
+            retArray.splice(index, 1)
+            return retArray
+        })
     }
 
     React.useEffect(() => {
@@ -43,23 +46,32 @@ export function Edit_habit_tracker() {
         <main>
             <section>
                 <h2>Add a Habit</h2>
-                <form>
-                    <label>
-                        Habit Name:
-                        <input type="text" placeholder= "habit" />
-                        <button type = "submit">Add Habit</button>
-                    </label>
+                <form onSubmit={addHabit}>
+                    <label>Habit Name:</label>
+                        <input 
+                            type="text" 
+                            placeholder= "habit" 
+                            value={newHabitName}
+                            onChange={(e) => setNewHabitName(e.target.value)}      
+                        />
+                    <button type="submit">Add Habit</button>
                 </form>
             </section>
 
             <section>
                 <h2>current habits</h2>
                 <ul className="ul-edit-ht">
-                    <li>Habit 1 <button type="button">Remove</button></li>
-                    <li>Habit 2 <button type="button">Remove</button></li>
-                    <li>Habit 3 <button type="button">Remove</button></li>
-                    <li>Habit 4 <button type="button">Remove</button></li>
-                    <li>Habit 5 <button type="button">Remove</button></li>
+                    {/**if no habits listed, print statement*/}
+                    {habits.length == 0 && (<li>No habits yet, add one above.</li>)} 
+                    {
+                        habits.map((h,index) => (
+                            <li key={h.id}>
+                                {h.name}
+                                <button type='button' onClick={() => removeHabit(index)}>Remove</button>
+                            </li>
+                        ))
+                    }
+                
                 </ul>            
             </section>
 
