@@ -115,15 +115,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Bundled using Vite** - followed instructions to download and use vite for both dev and deployement
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Components** - components made ready for next part
+- [x] **Router** - route in app.jsx all pages directable from each other
 
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - all implemented with components and hooks in react
+- [x] **Hooks** - useState: to store components to react, useEffect: performs side effects when input changes states.
 
 ## 🚀 Service deliverable
 
