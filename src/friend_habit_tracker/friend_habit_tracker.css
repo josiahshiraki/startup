@@ -3,3 +3,22 @@
     border-collapse: collapse;
     margin-top: 1rem;
 } 
+
+.friend-habit-tracker {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.friend-habit-tracker th,
+.friend-habit-tracker td {
+  border: 1px solid #666;
+  text-align: center;
+  padding: 6px;
+}
+
+.friend-habit-tracker th:first-child,
+.friend-habit-tracker td:first-child {
+  text-align: left;
+  width: 150px;
+}
