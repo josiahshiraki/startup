@@ -22,6 +22,11 @@ export function My_resolution() {
       }
   })
 
+  // save whenever goals changes
+  React.useEffect(() => {
+    localStorage.setItem(STORAGE_REF, JSON.stringify(goals));
+  }, [goals]);
+
   function addGoal() {
     const text = newGoal.trim();
     if (!text) return;
