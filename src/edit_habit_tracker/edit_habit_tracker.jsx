@@ -32,9 +32,9 @@ export function Edit_habit_tracker() {
     //on remove button click
     function removeHabit(index){ 
         setHabits(prevHabits => {
-            const retArray = [...prevHabits];
-            retArray.splice(index, 1)
-            return retArray
+            const proxy = [...prevHabits];
+            proxy.splice(index, 1)
+            return proxy
         })
     }
 
