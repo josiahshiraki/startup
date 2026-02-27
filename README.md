@@ -124,6 +124,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **All functionality implemented or mocked out** - all implemented with components and hooks in react
 - [x] **Hooks** - useState: to store components to react, useEffect: performs side effects when input changes states.
+      note: for the page "past weeks" I have not implemented hooks or general functionality because it requires accessing memory in storage outside of local, so for now it is not functional
 
 ## 🚀 Service deliverable
 
