@@ -47,15 +47,22 @@ export function Home_page({user}) {
     const [friendUsername, setFriendUsername] = React.useState('Loading...');
     const [partnerComment, setPartnerComment] = React.useState('');
 
-    React.useEffect(() => {
+    //side effects habits (altered) to store into local storage 
+    React.useEffect(() => { 
         localStorage.setItem(STORAGE_REF, JSON.stringify(habits));
+    }, [habits]);
+
+    //implemented for eventual websocket, side effects friends username and the incoming comment from another host
+    React.useEffect(() => {
         setFriendUsername('Friend');
         setPartnerComment('For with God, nothing shall be impossible');
     }, []);
 
+    //this function handles the logic for when a checkbox is checked or unchecked
     function toggleDay(habitId,dayIndex){
         setHabits(prevHabits =>
             prevHabits.map(h => {
+                //will only affect habit index that is sent via params
                 if (h.id != habitId) return h;
 
                 const newChecks = [...h.checks]; //create new array of bool vars for checkboxes ([...name] is syntax for copy of array)
