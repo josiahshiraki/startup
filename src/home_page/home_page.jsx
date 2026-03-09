@@ -1,8 +1,6 @@
 import React from 'react';
 import './home_page.css';
 
-const STORAGE_REF = 'accountable.habits'
-
 //habit objects for table habit tracker
 const defaultHabits = [];
 
@@ -34,23 +32,22 @@ function HabitRow({habit, onToggleDay}){
 
 export function Home_page({user}) {
 
-    //stores the global array of habit objs into local storage
-    const [habits, setHabits] = React.useState(() => {
-        const saved = localStorage.getItem(STORAGE_REF);
-        if(saved){
-            return JSON.parse(saved);
-        }else{
-            return defaultHabits;
-        }
-    })
-    
+    const [habits, setHabits] = React.useState(defaultHabits);
     const [friendUsername, setFriendUsername] = React.useState('Loading...');
     const [partnerComment, setPartnerComment] = React.useState('');
 
-    //side effects habits (altered) to store into local storage 
+    //side effects habits (altered) to store into backend storage
     React.useEffect(() => { 
-        localStorage.setItem(STORAGE_REF, JSON.stringify(habits));
-    }, [habits]);
+        async function loadHabits(){
+            const response = await fetch('/api/habits'); //get habits from backend
+
+            if(response.status === 200){
+                const data = await response.json(); 
+                setHabits(data);//store locally
+            }
+        }
+        loadHabits();
+    }, []);
 
     //implemented for eventual websocket, side effects friends username and the incoming comment from another host
     React.useEffect(() => {
@@ -58,19 +55,31 @@ export function Home_page({user}) {
         setPartnerComment('For with God, nothing shall be impossible');
     }, []);
 
+
+    async function saveHabits(updatedHabits) {
+        const response = await fetch('/api/habits', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedHabits), 
+        });
+
+        if (response.status === 200) {
+        const savedHabits = await response.json();
+        setHabits(savedHabits);
+        }
+    }
+
     //this function handles the logic for when a checkbox is checked or unchecked
     function toggleDay(habitId,dayIndex){
-        setHabits(prevHabits =>
-            prevHabits.map(h => {
-                //will only affect habit index that is sent via params
-                if (h.id != habitId) return h;
+        const updatedHabits = habits.map((h) => {
+            if (h.id !== habitId) return h; //returns if not the habit row being edited
 
-                const newChecks = [...h.checks]; //create new array of bool vars for checkboxes ([...name] is syntax for copy of array)
-                newChecks[dayIndex] = !newChecks[dayIndex] //ONLY inverts the clicked box
-                return {...h, checks: newChecks}; //new habit object with everything the same except the changed toggled box
-            }
-            )
-        )
+            const newChecks = [...h.checks];
+            newChecks[dayIndex] = !newChecks[dayIndex];
+            return { ...h, checks: newChecks };
+        });
+
+        saveHabits(updatedHabits);
     }
 
     return (
@@ -78,7 +87,7 @@ export function Home_page({user}) {
             <section>
                 <h2>Weekly Habit Tracker</h2>
                 <div>
-                    {habits.length == 0 && <div>add habits in "edit habit tracker" page</div>}
+                    {habits.length === 0 && <div>add habits in "edit habit tracker" page</div>}
                 </div>
 
                 <table className="my-habit-tracker" border="2">

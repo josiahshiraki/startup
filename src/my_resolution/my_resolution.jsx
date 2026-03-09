@@ -67,7 +67,7 @@ export function My_resolution() {
         <label>Goal: </label>
         <input
           type="text"
-          placeHolder="ex: lose 15lbs"
+          placeholder="ex: lose 15lbs"
           value={newGoal}
           onChange={(e) => setNewGoal(e.target.value)}
         />

@@ -7,7 +7,20 @@ const authCookieName = 'token';
 
 // Temporary in-memory storage
 let users = [];
-let data = [];
+let habitsByUser = {};
+
+habitsByUser["test@email.com"] = [
+  {
+    id: 1,
+    name: "Lift Weights",
+    checks: [true, false, false, true, false, false, false]
+  },
+  {
+    id: 2,
+    name: "Run",
+    checks: [false, true, false, false, false, false, false]
+  }
+];
 
 // Server port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -30,6 +43,8 @@ apiRouter.post('/auth/create', async (req, res) => {//create user
     res.status(409).send({ msg: 'Existing user' });
   } else {
     const user = await createUser(req.body.email, req.body.password);
+    console.log(JSON.stringify(users));
+    console.log(JSON.stringify(habitsByUser["test@email.com"]));
 
     setAuthCookie(res, user.token);
     res.send({ email: user.email });
@@ -65,9 +80,25 @@ const verifyAuth = async (req, res, next) => {
     req.user = user;
     next();
   } else {
-    res.status(401).send({ msg: 'Unauthorized' });
+    res.status(401).send({ msg: 'Incorrect username or password' });
   }
 };
+
+//====================================================================
+
+
+
+// ================HABITS MIDDLEWARE==================================
+
+apiRouter.get('/habits', verifyAuth, (req,res) => {
+    const userHabits = habitsByUser[req.user.email] || []; //responds with the array of habits respecitive to the current user
+    res.send(userHabits);
+});
+
+apiRouter.post('/habits', verifyAuth, (req,res) => {
+    habitsByUser[req.user.email] = req.body;//body contains updated habits
+    res.send(habitsByUser[req.user.email]);
+});
 
 //====================================================================
 
