@@ -1,47 +1,74 @@
 import React from 'react';
 import './login.css';
-import reactDOM from 'react-dom/client';
-import { BrowserRouter, NavLink, Route, Routes, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-
-export function Login({setUser}) {
-  const [text,setText] = React.useState('');
+export function Login({ setUser }) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
 
-  function loginUser(){
-    localStorage.setItem('user',text);
-    setUser(text);
+  function loginUser() {
+    if (!email || !password) return;
+
+    localStorage.setItem('user', email);
+    setUser(email);
     navigate("/home_page");
   }
 
-  function textChange(e){
-    setText(e.target.value);
+  function emailChange(e) {
+    setEmail(e.target.value);
   }
-  
-  return (
-    
-    <div className="login-page">
-      <main className = "login-main">
-        <section className = "login-card">
-          <h2>Login</h2>
-            <div className='email-login'>
-              <label>
-                <span>@</span>
-                <input id="emailInput" type="text" placeholder="your@email.com" onChange={textChange}/>
-              </label>
-            </div>
-            <div>
-              <label>
-                <span>🔒</span>
-                <input id="passInput" type="password" placeholder="password" />
-              </label>
-            </div>
 
-            <div>
-              <button className = "login-buttons" onClick={loginUser}>Login</button>
-              <button className = "login-buttons">Create Account</button>
-            </div>
-            <div>{text}</div>
+  function passwordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  return (
+    <div className="login-page">
+      <main className="login-main">
+        <section className="login-card">
+          <h2>Login</h2>
+
+          <div className='email-login'>
+            <label>
+              <span>@</span>
+              <input
+                id="emailInput"
+                type="text"
+                placeholder="your@email.com"
+                onChange={emailChange}
+              />
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <span>🔒</span>
+              <input
+                id="passInput"
+                type="password"
+                placeholder="password"
+                onChange={passwordChange}
+              />
+            </label>
+          </div>
+
+          <div>
+            <button
+              className="login-buttons"
+              onClick={loginUser}
+              disabled={!email || !password}
+            >
+              Login
+            </button>
+
+            <button className="login-buttons"
+              onClick={loginUser}
+              disabled={!email || !password}
+            >Create Account</button>
+          </div>
+
+          <div>{email}</div>
         </section>
       </main>
     </div>
