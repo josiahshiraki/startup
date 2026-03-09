@@ -14,19 +14,30 @@ import { Home_page } from './home_page/home_page'
 export default function App() {
     const [user, setUser] = React.useState((localStorage.getItem('user') || null))
 
+    function logoutUser() {
+        localStorage.removeItem('user');
+        setUser(null);
+    }
+
     return ( 
         <BrowserRouter>
             <div>
-                <header className>
-                    <div className = "header-bar">
-                        <div className = "brand">   
+                <header>
+                    <div className="header-bar">
+                        <div className="brand">   
                             <h1>Accountable<sup></sup></h1>
-                            {user && <div className = "username">{user}</div>}
+                            {user && <div className="username">{user}</div>}
                         </div>
-
+                        
                         <nav>
                             <menu>
-                                {user && <li><NavLink to="/login">Back To Login</NavLink></li>}
+                                {user && (
+                                  <li>
+                                    <NavLink to="/login" onClick={logoutUser}>
+                                      Back To Login
+                                    </NavLink>
+                                  </li>
+                                )}
                                 {user && <li><NavLink to="/home_page">Home</NavLink></li>}
                                 {user && <li><NavLink to="/my_resolution">My Resolution and Goals</NavLink></li>}
                                 {user && <li><NavLink to="/edit_habit_tracker">Edit Habit Tracker</NavLink></li>}
@@ -34,7 +45,8 @@ export default function App() {
                                 {user && <li><NavLink to="/friend_habit_tracker">Friend Habit Tracker</NavLink></li>}
                             </menu>
                         </nav>
-                        <img src = "sisyphus.jpg" alt = "motivational picture" className = "header-image" width={100}/>
+
+                        <img src="sisyphus.jpg" alt="motivational picture" className="header-image" width={100}/>
                     </div>
                     <hr />
                 </header>
