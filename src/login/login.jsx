@@ -7,12 +7,23 @@ export function Login({ setUser }) {
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
 
-  function loginUser() {
+  async function authenticate(endpoint) {
     if (!email || !password) return;
 
-    localStorage.setItem('user', email);
-    setUser(email);
-    navigate("/home_page");
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email,password}),
+    });
+
+    if(response.status === 200){
+      const user = await response.json();
+      localStorage.setItem('user', user.email);
+      setUser(user.email);
+      navigate('/home_page');
+    }else{
+      alert("authentication failed")
+    }
   }
 
   function emailChange(e) {
@@ -56,14 +67,14 @@ export function Login({ setUser }) {
           <div>
             <button
               className="login-buttons"
-              onClick={loginUser}
+              onClick={() => authenticate('/api/auth/login')}
               disabled={!email || !password}
             >
               Login
             </button>
 
             <button className="login-buttons"
-              onClick={loginUser}
+              onClick={() => authenticate('/api/auth/create')}
               disabled={!email || !password}
             >Create Account</button>
           </div>
