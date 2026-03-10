@@ -13,6 +13,10 @@ export function My_resolution() {
   const [newGoal, setNewGoal] = React.useState(''); //for input box
   const [goals, setGoals] = React.useState(defaultResolutions);
 
+  //quotes
+  const [quote, setQuote] = React.useState('Loading inspiration...');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('');
+
   // save whenever goals changes
   React.useEffect(() => {
     async function loadResolutions(){
@@ -24,6 +28,19 @@ export function My_resolution() {
       }
     }
     loadResolutions();
+  }, []);
+
+  React.useEffect(() => {//third party api
+    fetch('https://quote.cs260.click')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data.quote);
+        setQuoteAuthor(data.author);
+      })
+      .catch(() => {
+        setQuote('A habit missed once is a mistake, a habit missed twice is the start of a new habit.');
+        setQuoteAuthor('James Clear');
+      });
   }, []);
 
 
@@ -60,7 +77,7 @@ async function saveResolutions(updatedGoals) {//helper function that requests ba
  <main>
     <section>
       <h2>Daily Inspiration</h2>
-      <p>"A habit missed once is a mistake, a habit missed twice is the start of a new habit." — James Clear</p>
+      <p>"{quote}" {quoteAuthor && `— ${quoteAuthor}`}</p>
     </section>
 
     <section>
