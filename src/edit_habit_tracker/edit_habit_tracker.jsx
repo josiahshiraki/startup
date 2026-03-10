@@ -16,34 +16,47 @@ export function Edit_habit_tracker() {
     //returns the array of habit objs to be referenced in this page 
     const [habits, setHabits] = React.useState([]);
 
-  React.useEffect(() => {
-    async function loadHabits() {
-      const response = await fetch('/api/habits');
+    React.useEffect(() => {
+        async function loadHabits() {
+            const response = await fetch('/api/habits');
 
-      if (response.status === 200) {
-        const data = await response.json();
-        setHabits(data);
-      }
+            if (response.status === 200) {
+            const data = await response.json();
+            setHabits(data);
+            }
+        }
+
+        loadHabits();
+    }, []);   
+    
+    async function saveHabits(updatedHabits){ //helper function to talk to back end
+        const response = await fetch("/api/habits", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updatedHabits),
+        });
+
+        if(response.status === 200){
+            const savedHabits = await response.json();
+            setHabits(savedHabits)
+        }
     }
-
-    loadHabits();
-  }, []);    
 
     function addHabit(e){
         e.preventDefault(); //no reload
         const name = newHabitName.trim(); //no whitespace
         if (!name) return; // if there's no input, don't do anything
-        setHabits(prevHabits => [...prevHabits, createHabit(name)]); //appends new habit to array
+
+        const updatedHabits = [...habits, createHabit(name)]
+        saveHabits(updatedHabits); //call helper function to access backend 
         setNewHabitName('') //clears input box
     }
 
     //on remove button click
     function removeHabit(index){ 
-        setHabits(prevHabits => {
-            const proxy = [...prevHabits];
-            proxy.splice(index, 1)
-            return proxy
-        })
+        const proxy = [...habits];
+        proxy.splice(index, 1);
+        saveHabits(proxy);
     }
 
     React.useEffect(() => {
@@ -78,8 +91,7 @@ export function Edit_habit_tracker() {
                                 <button type='button' onClick={() => removeHabit(index)}>Remove</button>
                             </li>
                         ))
-                    }
-                
+                    }     
                 </ul>            
             </section>
 

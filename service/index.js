@@ -10,19 +10,6 @@ let users = [];
 let habitsByUser = {};
 let resolutionsByUser = {};
 
-habitsByUser["test@email.com"] = [
-  {
-    id: 1,
-    name: "Lift Weights",
-    checks: [true, false, false, true, false, false, false]
-  },
-  {
-    id: 2,
-    name: "Run",
-    checks: [false, true, false, false, false, false, false]
-  }
-];
-
 // Server port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
