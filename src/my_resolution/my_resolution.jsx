@@ -76,7 +76,7 @@ async function saveResolutions(updatedGoals) {//helper function that requests ba
   return (
  <main>
     <section>
-      <h2>Daily Inspiration</h2>
+      <h2>Inspiration (if you're a coder)</h2>
       <p>"{quote}" {quoteAuthor && `— ${quoteAuthor}`}</p>
     </section>
 

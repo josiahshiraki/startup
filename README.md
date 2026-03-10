@@ -130,12 +130,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - created express server running on port 3000
+- [x] **Static middleware for frontend** - used app.use(express.static('public'))
+- [x] **Calls to third party endpoints** - used fetch in my_resolutions.jsx to get daily quote from https://quote.cs260.click
+- [x] **Backend service endpoints** - implemented express routes for authentication, habits, and resolutions
+- [x] **Frontend calls service endpoints** - react components use fetch to talk with backend
+- [x] **Supports registration, login, logout, and restricted endpoint** - implemented hashed passwords with bcrypt, auth cookies and verifyAuth middleware to protect endpoints
 
 ## 🚀 DB deliverable
 
