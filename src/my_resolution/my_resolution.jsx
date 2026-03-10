@@ -10,37 +10,50 @@ function createResolution(resolution){
 const defaultResolutions = [];
 
 export function My_resolution() {
-
-  const [newGoal, setNewGoal] = React.useState('') //for input box
-
-  const [goals, setGoals] = React.useState(() => {
-      const saved = localStorage.getItem(STORAGE_REF);
-      if(saved){
-        return JSON.parse(saved)
-      }else{
-        return defaultResolutions;
-      }
-  })
+  const [newGoal, setNewGoal] = React.useState(''); //for input box
+  const [goals, setGoals] = React.useState(defaultResolutions);
 
   // save whenever goals changes
   React.useEffect(() => {
-    localStorage.setItem(STORAGE_REF, JSON.stringify(goals));
-  }, [goals]);
+    async function loadResolutions(){
+      const response = await fetch("/api/resolutions");
+
+      if (response.status === 200){// checks if server has properly handled request 200 code for succesfull
+        const data = await response.json();
+        setGoals(data);//locally store goals
+      }
+    }
+    loadResolutions();
+  }, []);
+
+
+async function saveResolutions(updatedGoals) {//helper function that requests back end for add/delete goals
+    const response = await fetch('/api/resolutions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedGoals),
+    });
+
+    if (response.status === 200) {
+      const savedGoals = await response.json();
+      setGoals(savedGoals);
+    }
+  }
+
 
   function addGoal() {
     const text = newGoal.trim();
     if (!text) return;
 
-    setGoals(prev => [...prev, createResolution(text)]);
+    const updatedGoals = [...goals,createResolution(text)];
+    saveResolutions(updatedGoals);
     setNewGoal('');
   }
 
   function removeGoal(index){
-    setGoals(prev => {
-      const proxy = [...prev]
-      proxy.splice(index, 1)
-      return proxy 
-    })
+      const proxy = [...goals];
+      proxy.splice(index, 1);
+      saveResolutions(proxy);
   }
 
   return (
@@ -52,7 +65,7 @@ export function My_resolution() {
 
     <section>
       <h2>My Resolutions</h2>
-      {goals.length == 0 && (<li>input goals below</li>)}
+      {goals.length === 0 && (<li>input goals below</li>)}
       <ul>
         {
           goals.map((g,index) => (

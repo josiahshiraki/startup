@@ -14,12 +14,20 @@ export function Edit_habit_tracker() {
     const [newHabitName, setNewHabitName] = React.useState('');
 
     //returns the array of habit objs to be referenced in this page 
-    const [habits, setHabits] = React.useState(() => { 
-        const saved = localStorage.getItem(STORAGE_REF);
-        if(saved){
-            return JSON.parse(saved);
-        }
-    })
+    const [habits, setHabits] = React.useState([]);
+
+  React.useEffect(() => {
+    async function loadHabits() {
+      const response = await fetch('/api/habits');
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setHabits(data);
+      }
+    }
+
+    loadHabits();
+  }, []);    
 
     function addHabit(e){
         e.preventDefault(); //no reload

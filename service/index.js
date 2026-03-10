@@ -8,6 +8,7 @@ const authCookieName = 'token';
 // Temporary in-memory storage
 let users = [];
 let habitsByUser = {};
+let resolutionsByUser = {};
 
 habitsByUser["test@email.com"] = [
   {
@@ -93,11 +94,33 @@ const verifyAuth = async (req, res, next) => {
 apiRouter.get('/habits', verifyAuth, (req,res) => {
     const userHabits = habitsByUser[req.user.email] || []; //responds with the array of habits respecitive to the current user
     res.send(userHabits);
+    
 });
 
 apiRouter.post('/habits', verifyAuth, (req,res) => {
     habitsByUser[req.user.email] = req.body;//body contains updated habits
     res.send(habitsByUser[req.user.email]);
+    console.log(JSON.stringify(habitsByUser[req.user.email]));
+});
+
+
+//====================================================================
+
+
+
+
+// ================RESOLUTIONS MIDDLEWARE=============================
+//similar functions for habits
+
+apiRouter.get('/resolutions', verifyAuth, (req, res) => {
+  const userResolutions = resolutionsByUser[req.user.email] || [];
+  res.send(userResolutions);
+});
+
+apiRouter.post('/resolutions', verifyAuth, (req, res) => {
+  resolutionsByUser[req.user.email] = req.body;
+  res.send(resolutionsByUser[req.user.email]);
+  console.log(JSON.stringify(resolutionsByUser));
 });
 
 //====================================================================

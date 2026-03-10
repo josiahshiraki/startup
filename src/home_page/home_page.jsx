@@ -78,7 +78,6 @@ export function Home_page({user}) {
             newChecks[dayIndex] = !newChecks[dayIndex];
             return { ...h, checks: newChecks };
         });
-
         saveHabits(updatedHabits);
     }
 
