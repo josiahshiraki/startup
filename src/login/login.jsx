@@ -10,19 +10,25 @@ export function Login({ setUser }) {
   async function authenticate(endpoint) {
     if (!email || !password) return;
 
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({email,password}),
-    });
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include',
+      });
 
-    if(response.status === 200){
-      const user = await response.json();
-      localStorage.setItem('user', user.email);
-      setUser(user.email);
-      navigate('/home_page');
-    }else{
-      alert("authentication failed")
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        localStorage.setItem('user', data.email);
+        setUser(data.email);
+        navigate('/home_page');
+      } else {
+        alert(data.msg || `Request failed with status ${response.status}`);
+      }
+    } catch (err) {
+      alert(`Network error: ${err.message}`);
     }
   }
 
@@ -40,7 +46,7 @@ export function Login({ setUser }) {
         <section className="login-card">
           <h2>Login</h2>
 
-          <div className='email-login'>
+          <div className="email-login">
             <label>
               <span>@</span>
               <input
@@ -73,10 +79,13 @@ export function Login({ setUser }) {
               Login
             </button>
 
-            <button className="login-buttons"
+            <button
+              className="login-buttons"
               onClick={() => authenticate('/api/auth/create')}
               disabled={!email || !password}
-            >Create Account</button>
+            >
+              Create Account
+            </button>
           </div>
 
           <div>{email}</div>

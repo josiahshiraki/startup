@@ -17,9 +17,18 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "mongodb": "^7.1.1",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josiahshiraki/startup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/josiahshiraki/startup/issues"
+  },
+  "homepage": "https://github.com/josiahshiraki/startup#readme"
 }

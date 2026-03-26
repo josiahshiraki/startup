@@ -4,24 +4,8 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token';
+const DB = require('./database.js');
 
-// Temporary in-memory storage
-// let users = [];
-// let habitsByUser = {};
-// let resolutionsByUser = {};
-
-const { MongoClient } = require('mongodb');
-const bcrypt = require('bcryptjs');
-const uuid = require('uuid');
-const config = require('./dbConfig.json');
-
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
-const db = client.db('accountable');
-
-const userCollection = db.collection('users');
-const habitCollection = db.collection('habits');
-const resolutionCollection = db.collection('resolutions');
 
 // Server port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -40,24 +24,37 @@ app.use('/api', apiRouter);
 // ================LOGIN VERIFICATION MIDDLEWARE=====================
 
 apiRouter.post('/auth/create', async (req, res) => {//create user
-  if (await findUser('email', req.body.email)) {
-    res.status(409).send({ msg: 'Existing user' });
-  } else {
-    const user = await createUser(req.body.email, req.body.password);
-    console.log(JSON.stringify(users));
-    console.log(JSON.stringify(habitsByUser["test@email.com"]));
+  // if (await DB.getUser(req.body.email)) {
+  //   res.status(409).send({ msg: 'Existing user' });
+  // } else {
+  //   const user = await DB.createUser(req.body.email, req.body.password);
 
-    setAuthCookie(res, user.token);
-    res.send({ email: user.email });
+  //   setAuthCookie(res, user.token);
+  //   res.send({ email: user.email });
+  // }
+  try {
+    console.log('CREATE BODY:', req.body);
+
+    if (await DB.getUser(req.body.email)) {
+      res.status(409).send({ msg: 'Existing user' });
+    } else {
+      const user = await DB.createUser(req.body.email, req.body.password);
+      setAuthCookie(res, user.token);
+      res.send({ email: user.email });
+    }
+  } catch (err) {
+    console.error('CREATE ERROR:', err);
+    res.status(500).send({ msg: err.message });
   }
 });
 
 apiRouter.post('/auth/login', async (req, res) => {// GetAuth login an existing user
-  const user = await findUser('email', req.body.email);
+  const user = await DB.getUser(req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
-      setAuthCookie(res, user.token);
+      const token = uuid.v4();
+      await DB.updateUserToken(user.email, token);
+      setAuthCookie(res, token);
       res.send({ email: user.email });
       return;
     }
@@ -66,22 +63,22 @@ apiRouter.post('/auth/login', async (req, res) => {// GetAuth login an existing 
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {// DeleteAuth logout a user
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
   if (user) {
-    delete user.token;
+    await DB.removeUserToken(req.cookies[authCookieName]);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
 
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
 
   if (user) {
     req.user = user;
     next();
   } else {
-    res.status(401).send({ msg: 'Incorrect username or password' });
+    res.status(401).send({ msg: 'Unauthorized' });
   }
 };
 
@@ -91,16 +88,16 @@ const verifyAuth = async (req, res, next) => {
 
 // ================HABITS MIDDLEWARE==================================
 
-apiRouter.get('/habits', verifyAuth, (req,res) => {
-    const userHabits = habitsByUser[req.user.email] || []; //responds with the array of habits respecitive to the current user
+apiRouter.get('/habits', verifyAuth, async (req,res) => {
+    const userHabits = await DB.getHabits(req.user.email); //responds with the array of habits respecitive to the current user
     res.send(userHabits);
     
 });
 
-apiRouter.post('/habits', verifyAuth, (req,res) => {
-    habitsByUser[req.user.email] = req.body;//body contains updated habits
-    res.send(habitsByUser[req.user.email]);
-    console.log(JSON.stringify(habitsByUser[req.user.email]));
+apiRouter.post('/habits', verifyAuth, async (req,res) => {
+    await DB.saveHabits(req.user.email, req.body);
+    res.send(req.body);
+    //console.log(JSON.stringify(req.body));
 });
 
 
@@ -112,15 +109,14 @@ apiRouter.post('/habits', verifyAuth, (req,res) => {
 // ================RESOLUTIONS MIDDLEWARE=============================
 //similar functions for habits
 
-apiRouter.get('/resolutions', verifyAuth, (req, res) => {
-  const userResolutions = resolutionsByUser[req.user.email] || [];
-  res.send(userResolutions);
+apiRouter.get('/resolutions', verifyAuth, async (req, res) => {
+  const resolutions = await DB.getResolutions(req.user.email);
+  res.send(resolutions);
 });
 
-apiRouter.post('/resolutions', verifyAuth, (req, res) => {
-  resolutionsByUser[req.user.email] = req.body;
-  res.send(resolutionsByUser[req.user.email]);
-  console.log(JSON.stringify(resolutionsByUser));
+apiRouter.post('/resolutions', verifyAuth, async (req, res) => {
+  await DB.saveResolutions(req.user.email, req.body);
+  res.send(req.body);
 });
 
 //====================================================================
@@ -135,29 +131,6 @@ apiRouter.get('/test', verifyAuth, (req, res) => {
   res.send({ msg: 'API is working', email: req.user.email });
 });
 
-
-// =====================================
-// HELPER FUNCTIONS
-// =====================================
-
-async function createUser(email, password) {
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = {
-    email: email,
-    password: passwordHash,
-    token: uuid.v4(),
-  };
-
-  users.push(user);
-  return user;
-}
-
-async function findUser(field, value) {
-  if (!value) return null;
-
-  return users.find((u) => u[field] === value);
-}
 
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
