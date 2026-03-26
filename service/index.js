@@ -6,9 +6,22 @@ const app = express();
 const authCookieName = 'token';
 
 // Temporary in-memory storage
-let users = [];
-let habitsByUser = {};
-let resolutionsByUser = {};
+// let users = [];
+// let habitsByUser = {};
+// let resolutionsByUser = {};
+
+const { MongoClient } = require('mongodb');
+const bcrypt = require('bcryptjs');
+const uuid = require('uuid');
+const config = require('./dbConfig.json');
+
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+const db = client.db('accountable');
+
+const userCollection = db.collection('users');
+const habitCollection = db.collection('habits');
+const resolutionCollection = db.collection('resolutions');
 
 // Server port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
