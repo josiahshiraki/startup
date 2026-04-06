@@ -15,5 +15,33 @@ export class friendClient{
         email: userEmail,
       }));
     };
+
+    this.socket.onmessage = async (event) => {
+      const data = JSON.parse(await event.data.text());
+      this.notifyObservers(data);
+    };
+
+    this.socket.onclose = () => {
+      this.connected = false;
+    };
+  }
+
+  sendUpdate(from, to, habits, message){
+    if (!this.connected) return;
+
+    this.socket.send(JSON.stringify({
+        type: "friendUpdate",
+        from,
+        to,
+        habits,
+        message,
+    }));
+  }
+  addObserver(fn) {
+    this.observers.push(fn);
+  }
+
+  notifyObservers(data) {
+    this.observers.forEach((fn) => fn(data));
   }
 }

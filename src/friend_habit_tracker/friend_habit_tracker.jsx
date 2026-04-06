@@ -1,5 +1,6 @@
 import React from 'react';
 import './friend_habit_tracker.css';
+import { FriendClient } from './websocket';
 
 
 // Placeholder until websockets: show something reasonable
