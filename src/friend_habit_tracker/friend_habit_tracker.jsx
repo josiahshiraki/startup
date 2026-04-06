@@ -56,21 +56,34 @@ export function Friend_habit_tracker() {
       }
     });
 
-  // const [feed, setFeed] = React.useState([]);
+    setSocketClient(client);
+
+    return () => {
+      client.close();
+    };
+  }, [userEmail]);
+
 
   function sendEncouragement(e){
     e.preventDefault();
+    
     const text = message.trim();
-    if(!text) return; //does not send if message box empty
+    if(!text || !socketClient || !friendEmail) return; //does not send if message box empty
 
-    setFeed(prev => [{ text, at: Date.now(), from: 'You' }, ...prev]);
+    socketClient.sendUpdate(
+      userEmail,
+      friendEmail,
+      demoFriendHabits,
+      text
+    );
+
     setMessage('');
   }
 
   return (
   <main>
     <section>
-      <h2>Friend’s Weekly Habit Tracker</h2>
+      <h2>{friendUsername}’s Weekly Habit Tracker</h2>
 
       <table className="friend-habit-tracker" border="2">
         <thead>
@@ -96,7 +109,12 @@ export function Friend_habit_tracker() {
       </table>
     </section>
 
-    <section>
+      <section>
+        <h2>Latest Encouragement</h2>
+        <p>{friendMessage || 'No message yet.'}</p>
+      </section>
+
+    <section>      
       <h2>Send Encouragement</h2>
 
       <form onSubmit={sendEncouragement}>
