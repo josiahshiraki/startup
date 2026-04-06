@@ -5,7 +5,7 @@ const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token';
 const DB = require('./database.js');
-const { WeSocketServer } = require('ws');
+const { WebSocketServer } = require('ws');
 
 
 // Server port
@@ -151,12 +151,42 @@ app.use((err, req, res, next) => {
 // START SERVER
 // =====================================
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
 const server = app.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
 
 const wss = new WebSocketServer({server});
+
+const connections = new Map(); // email -> socket
+
+wss.on('connection', (ws) => {
+  console.log('WebSocket connected');
+
+  ws.on('message', (message) => {
+    const data = JSON.parse(message);
+
+    // register user connection
+    if (data.type === 'connect') {
+      ws.email = data.email;
+      connections.set(data.email, ws);
+      return;
+    }
+
+    // forward update to friend
+    if (data.type === 'friendUpdate') {
+      const friendSocket = connections.get(data.to);
+
+      if (friendSocket && friendSocket.readyState === 1) {
+        friendSocket.send(JSON.stringify(data));
+      }
+    }
+  });
+
+  ws.on('close', () => {
+    console.log('WebSocket disconnected');
+
+    if (ws.email){
+      connections.delete(ws.email);
+    }
+  });
+});
