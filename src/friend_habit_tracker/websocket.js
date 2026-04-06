@@ -1,4 +1,4 @@
-export class friendClient{
+export class FriendClient{
     observers = [];
     connected = false;
     socket = null;
@@ -17,7 +17,7 @@ export class friendClient{
     };
 
     this.socket.onmessage = async (event) => {
-      const data = JSON.parse(await event.data.text());
+      const data = JSON.parse(event.data);
       this.notifyObservers(data);
     };
 

@@ -3,7 +3,7 @@ import './friend_habit_tracker.css';
 import { FriendClient } from './websocket';
 
 
-// Placeholder until websockets: show something reasonable
+// Placeholder until real friend data arrives
 const demoFriendHabits = [
   { id: 'h1', name: 'Habit 1', checks: Array(7).fill(false) },
   { id: 'h2', name: 'Habit 2', checks: Array(7).fill(false) },
@@ -31,11 +31,32 @@ export function Friend_habit_tracker() {
   // will be updated for websocket part of project
   const [friendUsername, setFriendUsername] = React.useState("friend's username");
   const [friendHabits, setFriendHabits] = React.useState(demoFriendHabits);
+  const [friendMessage, setFriendMessage] = React.useState('');  
+  
 
   //controller for message box
   const [message, setMessage] = React.useState('');
 
-  const [feed, setFeed] = React.useState([]);
+
+  const [socketClient, setSocketClient] = React.useState(null);
+
+  const userEmail = localStorage.getItem('user') || '';
+  const friendEmail = localStorage.getItem('friendEmail') || '';
+
+  React.useEffect(() => {
+    if (!userEmail) return;
+
+    const client = new FriendClient(userEmail);
+
+    client.addObserver((data) => {
+      if (data.type === 'friendUpdate') {
+        setFriendUsername(data.from || "friend's username");
+        setFriendHabits(data.habits || []);
+        setFriendMessage(data.message || '');
+      }
+    });
+
+  // const [feed, setFeed] = React.useState([]);
 
   function sendEncouragement(e){
     e.preventDefault();
