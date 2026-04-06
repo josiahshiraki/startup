@@ -41,12 +41,33 @@ export function Friend_habit_tracker() {
   const [socketClient, setSocketClient] = React.useState(null);
 
   const userEmail = localStorage.getItem('user') || '';
-  const friendEmail = localStorage.getItem('friendEmail') || '';
+
+
+  function ensureFriendEmail(){
+    let stored = localStorage.getItem('friendEmail');
+
+    if(!stored) {
+      const input = prompt('enter your friends email');
+
+      if (input &&input.trim()){
+        stored = input.trim();
+        localStorage.setItem('friendEmail', stored);
+      }
+    }
+
+    return stored || '';
+  }
+
+  const [friendEmail, setFriendEmail] = React.useState('');
 
   React.useEffect(() => {
-    if (!userEmail) return;
 
+    const email = ensureFriendEmail();
+    setFriendEmail(email);
+
+    if (!userEmail) return;
     const client = new FriendClient(userEmail);
+
 
     client.addObserver((data) => {
       if (data.type === 'friendUpdate') {
@@ -68,7 +89,7 @@ export function Friend_habit_tracker() {
     e.preventDefault();
     
     const text = message.trim();
-    if(!text || !socketClient || !friendEmail) return; //does not send if message box empty
+    if(!text || !socketClient || !socketClient.connected || !friendEmail) return; //does not send if message box empty
 
     socketClient.sendUpdate(
       userEmail,
@@ -83,7 +104,7 @@ export function Friend_habit_tracker() {
   return (
   <main>
     <section>
-      <h2>{friendUsername}’s Weekly Habit Tracker</h2>
+      <h2>{friendUsername}s Weekly Habit Tracker</h2>
 
       <table className="friend-habit-tracker" border="2">
         <thead>
