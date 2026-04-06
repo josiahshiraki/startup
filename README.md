@@ -138,7 +138,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Supports registration, login, logout, and restricted endpoint** - implemented hashed passwords with bcrypt, auth cookies and verifyAuth middleware to protect endpoints
 
 ## 🚀 DB deliverable
-
+check for changes!!!!!
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Stores data in MongoDB** - connected to backend using dbconfig and rewrote functions to fetch and put info
