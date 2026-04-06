@@ -27,6 +27,7 @@ function FriendHabitRow({ habit }) {
 }
 
 export function Friend_habit_tracker() {
+  console.log('Friend_habit_tracker rendered');
 
   // will be updated for websocket part of project
   const [friendUsername, setFriendUsername] = React.useState("friend's username");
@@ -61,6 +62,8 @@ export function Friend_habit_tracker() {
   const [friendEmail, setFriendEmail] = React.useState('');
 
   React.useEffect(() => {
+    console.log('friend tracker useEffect running');
+    console.log('userEmail is', userEmail);
 
     const email = ensureFriendEmail();
     setFriendEmail(email);

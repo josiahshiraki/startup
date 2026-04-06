@@ -160,21 +160,24 @@ const wss = new WebSocketServer({server});
 const connections = new Map(); // email -> socket
 
 wss.on('connection', (ws) => {
-  console.log('WebSocket connected');
 
   ws.on('message', (message) => {
+    console.log('Websocket connected');
     const data = JSON.parse(message);
+    console.log('server recieved: ', data);
 
     // register user connection
     if (data.type === 'connect') {
       ws.email = data.email;
       connections.set(data.email, ws);
+      console.log('registered socket for', data.email);
       return;
     }
 
     // forward update to friend
     if (data.type === 'friendUpdate') {
       const friendSocket = connections.get(data.to);
+      console.log('forwarding to', data.to, 'found?', !!friendSocket);
 
       if (friendSocket && friendSocket.readyState === 1) {
         friendSocket.send(JSON.stringify(data));

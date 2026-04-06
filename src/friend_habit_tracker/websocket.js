@@ -4,11 +4,14 @@ export class FriendClient{
     socket = null;
 
   constructor(userEmail) {
+    console.log('FriendClient constructor running for', userEmail);
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
     this.socket.onopen = () => {
-      this.connected = true;
+    
+        console.log('socket opened for', userEmail);
+        this.connected = true;
 
       this.socket.send(JSON.stringify({
         type: 'connect',
@@ -17,11 +20,13 @@ export class FriendClient{
     };
 
     this.socket.onmessage = async (event) => {
+      console.log('message received:', event.data);
       const data = JSON.parse(event.data);
       this.notifyObservers(data);
     };
 
     this.socket.onclose = () => {
+      console.log('socket closed for', userEmail);
       this.connected = false;
     };
   }
@@ -39,9 +44,15 @@ export class FriendClient{
   }
   addObserver(fn) {
     this.observers.push(fn);
-  }
+  }e
 
   notifyObservers(data) {
     this.observers.forEach((fn) => fn(data));
+  }
+
+  close() {
+    if (this.socket) {
+      this.socket.close();
+    }
   }
 }
