@@ -27,20 +27,18 @@ function FriendHabitRow({ habit }) {
 }
 
 export function Friend_habit_tracker() {
-  console.log('Friend_habit_tracker rendered');
+  console.log('Friend_habit_tracker function rendered');
 
   // will be updated for websocket part of project
   const [friendUsername, setFriendUsername] = React.useState("");
   const [friendHabits, setFriendHabits] = React.useState(demoFriendHabits);
   const [friendMessage, setFriendMessage] = React.useState('');  
   
-
   //controller for message box
   const [message, setMessage] = React.useState('');
 
 
   const [socketClient, setSocketClient] = React.useState(null);
-
   const userEmail = localStorage.getItem('user') || '';
 
 
@@ -93,11 +91,16 @@ export function Friend_habit_tracker() {
 
   function sendEncouragement(e){
     e.preventDefault();
+    console.log('comment button pressed');
 
     //does not send if message box empty or if web socket not connected
     const text = message.trim();
+    console.log(socketClient);
+
+
     if(!text || !socketClient || !socketClient.connected || !friendEmail) return;
 
+    
     socketClient.sendUpdate(
       userEmail,
       friendEmail,
