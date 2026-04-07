@@ -15,7 +15,7 @@ export default function App() {
     const [user, setUser] = React.useState((localStorage.getItem('user') || null))
 
     function logoutUser() {
-        localStorage.removeItem('user');
+        localStorage.clear();
         setUser(null);
     }
 

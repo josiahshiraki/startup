@@ -42,7 +42,9 @@ export function Friend_habit_tracker() {
   const userEmail = localStorage.getItem('user') || '';
 
 
-  function ensureFriendEmail(){
+  function ensureFriendEmail(user){
+    if (!user) return '';
+
     let stored = localStorage.getItem('friendEmail');
 
     if(!stored) {
@@ -141,7 +143,7 @@ export function Friend_habit_tracker() {
     </section>
 
       <section>
-        <h2>Latest Encouragement From Friend</h2>
+        <h2>Encouragement From Friend</h2>
         <p>{friendMessage || 'No message yet.'}</p>
       </section>
 
