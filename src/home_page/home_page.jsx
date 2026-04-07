@@ -33,8 +33,7 @@ function HabitRow({habit, onToggleDay}){
 export function Home_page({user, friendMessage}) {
 
     const [habits, setHabits] = React.useState(defaultHabits);
-    const [friendUsername, setFriendUsername] = React.useState('Loading...');
-    const [partnerComment, setPartnerComment] = React.useState('');
+    const [friendUsername, setFriendUsername] = React.useState('Friend\'s comment');
 
     //side effects habits (altered) to store into backend storage
     React.useEffect(() => { 
@@ -48,13 +47,6 @@ export function Home_page({user, friendMessage}) {
         }
         loadHabits();
     }, []);
-
-    //implemented for eventual websocket, side effects friends username and the incoming comment from another host
-    React.useEffect(() => {
-        setFriendUsername('Friend');
-        setPartnerComment('For with God, nothing shall be impossible');
-    }, []);
-
 
     async function saveHabits(updatedHabits) {
         const response = await fetch('/api/habits', {
@@ -119,7 +111,7 @@ export function Home_page({user, friendMessage}) {
             <section>
                 <h2><strong>{friendUsername}</strong></h2>
                 <article>
-                    {friendMessage || "If you make friends with yourself, you will never be alone."}
+                    {friendMessage || "no messages yet"}
                 </article>
             </section>
         </main>

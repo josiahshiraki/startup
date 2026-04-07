@@ -64,7 +64,7 @@ export function Friend_habit_tracker({ setFriendMessage, friendMessage }) {
     console.log('friend tracker useEffect running');
     console.log('userEmail is', userEmail);
 
-    const email = ensureFriendEmail();
+    const email = ensureFriendEmail(userEmail);
     console.log(email)
     setFriendEmail(email);
     setFriendUsername(email || 'Friend');
@@ -76,9 +76,8 @@ export function Friend_habit_tracker({ setFriendMessage, friendMessage }) {
 
     client.addObserver((data) => {
       if (data.type === 'friendUpdate') {
-        // setFriendUsername(data.from || "friend's username");
-        // setFriendHabits(data.habits || []);
-        // setFriendMessage(data.message || '');
+        setFriendUsername(data.from || "friend's username");
+        setFriendHabits(data.habits || []);
         setFriendMessage(data.message || '');
         localStorage.setItem('friendMessage', data.message || '');
       }
