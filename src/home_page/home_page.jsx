@@ -117,14 +117,15 @@ export function Home_page({user}) {
                 </table>
             </section>
 
+        </main>
+  );
+}
 
-            <section>
-                {/**preperation for web socket plug in*/}
+/**
+ *             <section>
                 <h2><strong>{friendUsername}</strong></h2>
                 <article>
                     {partnerComment || "If you make friends with yourself, you will never be alone."}
                 </article>
             </section>
-        </main>
-  );
-}
+ */

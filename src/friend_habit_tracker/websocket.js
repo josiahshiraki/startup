@@ -19,6 +19,15 @@ export class FriendClient{
       }));
     };
 
+    this.socket.onerror = (event) => {
+    console.log('socket error for', userEmail, event);
+    };
+
+    this.socket.onclose = (event) => {
+    console.log('socket closed for', userEmail, event.code, event.reason);
+    this.connected = false;
+    };
+
     this.socket.onmessage = async (event) => {
       console.log('message received:', event.data);
       const data = JSON.parse(event.data);
@@ -44,7 +53,7 @@ export class FriendClient{
   }
   addObserver(fn) {
     this.observers.push(fn);
-  }e
+  }
 
   notifyObservers(data) {
     this.observers.forEach((fn) => fn(data));

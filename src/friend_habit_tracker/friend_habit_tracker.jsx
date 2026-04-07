@@ -30,7 +30,7 @@ export function Friend_habit_tracker() {
   console.log('Friend_habit_tracker rendered');
 
   // will be updated for websocket part of project
-  const [friendUsername, setFriendUsername] = React.useState("friend's username");
+  const [friendUsername, setFriendUsername] = React.useState("");
   const [friendHabits, setFriendHabits] = React.useState(demoFriendHabits);
   const [friendMessage, setFriendMessage] = React.useState('');  
   
@@ -66,7 +66,10 @@ export function Friend_habit_tracker() {
     console.log('userEmail is', userEmail);
 
     const email = ensureFriendEmail();
+    console.log(email)
     setFriendEmail(email);
+    setFriendUsername(email || 'Friend');
+
 
     if (!userEmail) return;
     const client = new FriendClient(userEmail);
@@ -90,9 +93,10 @@ export function Friend_habit_tracker() {
 
   function sendEncouragement(e){
     e.preventDefault();
-    
+
+    //does not send if message box empty or if web socket not connected
     const text = message.trim();
-    if(!text || !socketClient || !socketClient.connected || !friendEmail) return; //does not send if message box empty
+    if(!text || !socketClient || !socketClient.connected || !friendEmail) return;
 
     socketClient.sendUpdate(
       userEmail,
@@ -107,7 +111,7 @@ export function Friend_habit_tracker() {
   return (
   <main>
     <section>
-      <h2>{friendUsername}s Weekly Habit Tracker</h2>
+      <h2>{friendUsername} Weekly Habit Tracker</h2>
 
       <table className="friend-habit-tracker" border="2">
         <thead>
@@ -134,7 +138,7 @@ export function Friend_habit_tracker() {
     </section>
 
       <section>
-        <h2>Latest Encouragement</h2>
+        <h2>Latest Encouragement From Friend</h2>
         <p>{friendMessage || 'No message yet.'}</p>
       </section>
 
