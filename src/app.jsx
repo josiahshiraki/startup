@@ -12,10 +12,12 @@ import { Home_page } from './home_page/home_page'
 
 
 export default function App() {
-    const [user, setUser] = React.useState((localStorage.getItem('user') || null))
+    const [user, setUser] = React.useState((localStorage.getItem('user') || null));
+    const [friendMessage, setFriendMessage] = React.useState(localStorage.getItem('friendMessage') || '');
 
     function logoutUser() {
         localStorage.clear();
+        setFriendMessage('');
         setUser(null);
     }
 
@@ -55,9 +57,9 @@ export default function App() {
                     <Route path='/' element={<Login setUser={setUser}/>} exact />
                     <Route path='/login' element={<Login setUser={setUser}/>} />
                     <Route path='/my_resolution' element={<My_resolution />} />
-                    <Route path='/home_page' element={<Home_page user={user}/>} />
+                    <Route path='/home_page' element={<Home_page user={user} friendMessage={friendMessage} />} />
                     <Route path='/edit_habit_tracker' element={<Edit_habit_tracker />} />
-                    <Route path='/friend_habit_tracker' element={<Friend_habit_tracker />} />
+                    <Route path='/friend_habit_tracker' element={<Friend_habit_tracker setFriendMessage={setFriendMessage} friendMessage={friendMessage}/>} />
                     <Route path='/past_weeks' element={<Past_weeks />} />
 
                     <Route path='*' element={<NotFound />} />

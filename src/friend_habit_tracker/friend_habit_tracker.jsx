@@ -26,13 +26,12 @@ function FriendHabitRow({ habit }) {
   );
 }
 
-export function Friend_habit_tracker() {
+export function Friend_habit_tracker({ setFriendMessage, friendMessage }) {
   console.log('Friend_habit_tracker function rendered');
 
   // will be updated for websocket part of project
   const [friendUsername, setFriendUsername] = React.useState("");
   const [friendHabits, setFriendHabits] = React.useState(demoFriendHabits);
-  const [friendMessage, setFriendMessage] = React.useState('');  
   
   //controller for message box
   const [message, setMessage] = React.useState('');
@@ -77,9 +76,11 @@ export function Friend_habit_tracker() {
 
     client.addObserver((data) => {
       if (data.type === 'friendUpdate') {
-        setFriendUsername(data.from || "friend's username");
-        setFriendHabits(data.habits || []);
+        // setFriendUsername(data.from || "friend's username");
+        // setFriendHabits(data.habits || []);
+        // setFriendMessage(data.message || '');
         setFriendMessage(data.message || '');
+        localStorage.setItem('friendMessage', data.message || '');
       }
     });
 

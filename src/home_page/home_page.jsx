@@ -30,7 +30,7 @@ function HabitRow({habit, onToggleDay}){
     );
 }
 
-export function Home_page({user}) {
+export function Home_page({user, friendMessage}) {
 
     const [habits, setHabits] = React.useState(defaultHabits);
     const [friendUsername, setFriendUsername] = React.useState('Loading...');
@@ -116,16 +116,12 @@ export function Home_page({user}) {
                     </tbody>
                 </table>
             </section>
-
+            <section>
+                <h2><strong>{friendUsername}</strong></h2>
+                <article>
+                    {friendMessage || "If you make friends with yourself, you will never be alone."}
+                </article>
+            </section>
         </main>
   );
 }
-
-/**
- *             <section>
-                <h2><strong>{friendUsername}</strong></h2>
-                <article>
-                    {partnerComment || "If you make friends with yourself, you will never be alone."}
-                </article>
-            </section>
- */
